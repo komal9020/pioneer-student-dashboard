@@ -1,0 +1,50 @@
+.results-table {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+}
+
+thead {
+    background: #2563eb;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+.pass {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.fail {
+    color: #dc2626;
+    font-weight: bold;
+}
+.result-summary {
+    background: #f0fdf4;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.marks-breakup ul {
+    margin-top: 10px;
+}
+
+.marks-breakup li {
+    margin-bottom: 8px;
+}

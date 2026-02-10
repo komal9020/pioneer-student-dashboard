@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests | EduClass</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="tests.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <div class="main-content">
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2>Tests & Assessments</h2>
+
+            <div class="test-tabs">
+                <button class="tab active">All</button>
+                <button class="tab">Upcoming</button>
+                <button class="tab">Ongoing</button>
+                <button class="tab">Completed</button>
+            </div>
+
+            <div class="tests-grid">
+
+                <div class="test-card">
+                    <h3>Mathematics Unit Test</h3>
+                    <p>Duration: 60 minutes</p>
+                    <p>Total Marks: 100</p>
+                    <p>Type: MCQ</p>
+                    <p>Schedule: 15 Mar 2024, 10:00 AM</p>
+                    <a href="test-instructions.html" class="btn-primary">Start Test</a>
+                </div>
+
+                <div class="test-card completed">
+                    <h3>Chemistry – Organic Compounds</h3>
+                    <p>Duration: 90 minutes</p>
+                    <p>Total Marks: 120</p>
+                    <p>Status: Completed</p>
+                    <button class="btn-outline" disabled>Completed</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Sticky Notes -->
+    <div id="sticky-notes"></div>
+
+</div>
+
+<!-- Global JS -->
+<script src="../assets/js/common.js"></script>
+
+<!-- Page JS -->
+<script src="tests.js"></script>
+
+</body>
+</html>

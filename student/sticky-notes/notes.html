@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes | EduClass</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <div class="main-content">
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2>Study Notes</h2>
+
+            <!-- Subject Filter -->
+            <div class="subject-filter">
+                <button class="filter active">All</button>
+                <button class="filter">Mathematics</button>
+                <button class="filter">Physics</button>
+                <button class="filter">Chemistry</button>
+                <button class="filter">Biology</button>
+            </div>
+
+            <!-- Notes List -->
+            <div class="notes-list">
+
+                <div class="note-card">
+                    <h3>Mathematics</h3>
+                    <p>Chapter 1: Quadratic Equations</p>
+                    <span class="tag pdf">PDF</span>
+                    <button class="btn-primary">Download</button>
+                </div>
+
+                <div class="note-card">
+                    <h3>Physics</h3>
+                    <p>Chapter 3: Laws of Motion</p>
+                    <span class="tag pdf">PDF</span>
+                    <button class="btn-primary">Download</button>
+                </div>
+
+                <div class="note-card">
+                    <h3>Chemistry</h3>
+                    <p>Chapter 2: Organic Chemistry</p>
+                    <span class="tag ppt">PPT</span>
+                    <button class="btn-primary">Download</button>
+                </div>
+
+                <div class="note-card">
+                    <h3>Biology</h3>
+                    <p>Chapter 5: Human Digestive System</p>
+                    <span class="tag pdf">PDF</span>
+                    <button class="btn-primary">Download</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Sticky Notes -->
+    <div id="sticky-notes"></div>
+
+</div>
+
+<!-- Global JS -->
+<script src="../assets/js/common.js"></script>
+
+<!-- Page JS -->
+<script src="notes.js"></script>
+
+</body>
+</html>

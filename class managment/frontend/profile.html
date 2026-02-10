@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Update Profile</h2>
+    <img id="profilePhoto" src="" width="100" alt="Profile Photo"/><br/><br/>
+
+    <form id="profileForm" enctype="multipart/form-data">
+        <input type="text" id="name" placeholder="Name" required/><br/><br/>
+        <input type="email" id="email" placeholder="Email" required/><br/><br/>
+        <input type="password" id="password" placeholder="Password" required/><br/><br/>
+        <select id="gender">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br/><br/>
+        <input type="text" id="className" placeholder="Class"/><br/><br/>
+        <input type="file" id="profile_photo"/><br/><br/>
+        <button type="submit">Update Profile</button>
+    </form>
+
+    <script>
+        const userId = localStorage.getItem('userId');
+
+        async function loadProfile(){
+            const res = await fetch(`http://localhost:5000/user/${userId}`);
+            const user = await res.json();
+
+            document.getElementById('name').value = user.name;
+            document.getElementById('email').value = user.email;
+            document.getElementById('password').value = user.password;
+            document.getElementById('gender').value = user.gender;
+            document.getElementById('className').value = user.class || '';
+            document.getElementById('profilePhoto').src = user.profile_photo ? `http://localhost:5000/uploads/${user.profile_photo}` : 'https://via.placeholder.com/100';
+        }
+
+        loadProfile();
+
+        document.getElementById('profileForm').addEventListener('submit', async e=>{
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('password', document.getElementById('password').value);
+            formData.append('gender', document.getElementById('gender').value);
+            formData.append('className', document.getElementById('className').value);
+
+            const fileInput = document.getElementById('profile_photo');
+            if(fileInput.files.length>0) formData.append('profile_photo', fileInput.files[0]);
+
+            const res = await fetch(`http://localhost:5000/update/${userId}`, {
+                method:'PUT',
+                body: formData
+            });
+
+            const data = await res.json();
+            alert(data.message);
+
+            // Update fields and photo immediately
+            const updatedUser = data.user;
+            document.getElementById('profilePhoto').src = updatedUser.profile_photo ? `http://localhost:5000/uploads/${updatedUser.profile_photo}` : 'https://via.placeholder.com/100';
+            document.getElementById('name').value = updatedUser.name;
+            document.getElementById('email').value = updatedUser.email;
+            document.getElementById('password').value = updatedUser.password;
+            document.getElementById('gender').value = updatedUser.gender;
+            document.getElementById('className').value = updatedUser.class || '';
+        });
+    </script>
+</body>
+</html>

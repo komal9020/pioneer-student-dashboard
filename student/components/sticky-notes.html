@@ -1,0 +1,45 @@
+<!-- Sticky Notes Header -->
+<div class="sticky-wrapper">
+    <div class="sticky-header">
+        <span>📌 Sticky Notes</span>
+        <button class="add-btn" onclick="openNoteBox()">＋</button>
+    </div>
+</div>
+
+<!-- Add Note Box (appears on + click) -->
+<div class="add-note-box" id="addNoteBox">
+
+    <!-- Message -->
+    <textarea
+        id="noteMessage"
+        placeholder="Write your question or doubt here..."
+    ></textarea>
+
+    <!-- Subject -->
+    <label>Subject</label>
+    <select id="noteSubject">
+        <option value="">Select Subject</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Physics">Physics</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Biology">Biology</option>
+    </select>
+
+    <!-- Color -->
+    <label>Color</label>
+    <div class="color-row">
+        <span class="dot yellow active" onclick="selectColor('yellow')"></span>
+        <span class="dot pink" onclick="selectColor('pink')"></span>
+        <span class="dot blue" onclick="selectColor('blue')"></span>
+        <span class="dot green" onclick="selectColor('green')"></span>
+        <span class="dot purple" onclick="selectColor('purple')"></span>
+        <span class="dot orange" onclick="selectColor('orange')"></span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="btn-row">
+        <button class="btn-add" onclick="saveNote()">Add Note</button>
+        <button class="btn-cancel" onclick="closeNoteBox()">Cancel</button>
+    </div>
+
+</div>

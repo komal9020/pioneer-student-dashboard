@@ -1,0 +1,58 @@
+.subject-filter {
+    margin: 20px 0;
+}
+
+.filter {
+    padding: 8px 14px;
+    border: none;
+    background: #e5e7eb;
+    border-radius: 6px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.filter.active {
+    background: #2563eb;
+    color: white;
+}
+
+.notes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.note-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    position: relative;
+}
+
+.note-card h3 {
+    color: #2563eb;
+    margin-bottom: 5px;
+}
+
+.note-card p {
+    margin-bottom: 15px;
+}
+
+.tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    color: white;
+}
+
+.tag.pdf {
+    background: #dc2626;
+}
+
+.tag.ppt {
+    background: #16a34a;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Login | EduClass</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-box">
+
+    <h2>EduClass</h2>
+    <p class="subtitle">Student Login</p>
+
+    <input type="email" id="email" value="student2026@gmail.com" placeholder="Email">
+    <input type="password" id="password" value="student@2026" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p class="note">Use common student credentials</p>
+
+  </div>
+</div>
+
+<script>
+function login() {
+  fetch("http://localhost:3000/student/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: email.value,
+      password: password.value
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+
+    if (!data.success) {
+      alert("Invalid Login");
+      return;
+    }
+
+    // ✅ save login state
+    localStorage.setItem("studentLoggedIn", "true");
+
+    // ✅ first time vs normal login
+    if (data.profileCompleted === 0) {
+      // first login → must update profile
+      window.location.href = "update-profile.html";
+    } else {
+      // profile already done → dashboard
+      window.location.href = "dashboard.html";
+    }
+
+  });
+}
+</script>
+
+</body>
+</html>

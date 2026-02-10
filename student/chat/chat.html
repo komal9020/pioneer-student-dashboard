@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat | EduClass</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <div class="main-content">
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Content -->
+        <div class="content chat-container">
+
+            <!-- Chat Users -->
+            <div class="chat-users">
+                <h3>Teachers</h3>
+                <div class="user active">Dr. Priya Sharma</div>
+                <div class="user">Prof. Rajesh Kumar</div>
+                <div class="user">Dr. Meera Patel</div>
+            </div>
+
+            <!-- Chat Box -->
+            <div class="chat-box">
+
+                <div class="chat-header">
+                    Chat with Dr. Priya Sharma
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message received">
+                        Hello Rahul, any doubt in today’s class?
+                    </div>
+
+                    <div class="message sent">
+                        Yes ma’am, quadratic equation formula doubt.
+                    </div>
+                </div>
+
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type your message...">
+                    <button class="btn-primary" onclick="sendMessage()">Send</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Sticky Notes -->
+    <div id="sticky-notes"></div>
+
+</div>
+
+<!-- Global JS -->
+<script src="../assets/js/common.js"></script>
+
+<!-- Page JS -->
+<script src="chat.js"></script>
+
+</body>
+</html>

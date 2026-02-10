@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | EduClass</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+    <link rel="stylesheet" href="../assets/css/sticky-notes.css">
+
+
+     <!-- Header & Sidebar -->
+    <link rel="stylesheet" href="../components/sidebar.html">
+    <link rel="stylesheet" href="../components/header.html">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <div class="main-content">
+
+        <!-- Header -->
+        <div id="header"></div>
+        <script>
+            fetch("../header/header.html")
+            .then(res => res.text())
+            .then(html => {
+            document.getElementById("header").innerHTML = html;
+
+            // 🔥 Load JS AFTER HTML exists
+           const script = document.createElement("script");
+            script.src = "../assets/js/header.js";
+             document.body.appendChild(script);
+        });
+       </script>
+
+        <!-- Dashboard Content -->
+        <div class="content">
+
+            <h2>Welcome back, <span id="studentName">Student<img id="studentPhoto" width="40">
+            </span>!</h2>
+
+            <div class="stats">
+                <div class="card">
+                    <p>Attendance</p>
+                    <h3>92%</h3>
+                </div>
+                <div class="card">
+                    <p>Pending Tests</p>
+                    <h3>3</h3>
+                </div>
+                <div class="card">
+                    <p>Fee Status</p>
+                    <h3>₹10000 / 15000</h3>
+                </div>
+            </div>
+
+            <div class="announcements">
+                <h3>Recent Announcements</h3>
+
+                <div class="announce blue">
+                    <strong>Mid-term Examinations</strong>
+                    <p>Starts from 15th March. Check timetable.</p>
+                </div>
+
+                <div class="announce green">
+                    <strong>Science Fair 2024</strong>
+                    <p>Register your projects now.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Sticky Notes -->
+    <div id="sticky-notes"></div>
+
+</div>
+
+<!-- Global JS -->
+<script src="../assets/js/common.js"></script>
+
+<!-- Page JS -->
+<script src="dashboard.js"></script>
+<script src="../assets/js/sticky-notes.js"></script>
+</body>
+</html>

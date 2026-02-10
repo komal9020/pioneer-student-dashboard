@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EduClass Header</title>
+  <link rel="stylesheet" href="../assets/css/header.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="top-header">
+  <div class="header-right">
+
+    <!-- Notification -->
+    <div class="notification-wrapper">
+      <button class="notification-btn" id="notificationBtn">
+        <img src="../assets/image/ui/bell.png" alt="Notifications">
+        <span class="badge" id="notifCount">3</span>
+      </button>
+
+      <div class="notification-panel" id="notificationPanel">
+        <h4>Notifications</h4>
+        <div class="notification-item">New assignment <span>2 min ago</span></div>
+        <div class="notification-item">Test tomorrow <span>1 hr ago</span></div>
+        <div class="notification-item">Fee reminder <span>Yesterday</span></div>
+      </div>
+    </div>
+
+    <!-- User -->
+    <div class="user" id="userBtn">
+      <div class="avatar">RS</div>
+      <span class="username">Rahul Sharma</span>
+
+      <div class="dropdown" id="userDropdown">
+        <a href="../profile/frontend/profile-view.html">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+      </div>
+    </div>
+
+    <button class="logout-btn">Logout</button>
+
+  </div>
+</header>
+
+
+<script src="../assets/js/header.js"></script>
+</body>
+</html>

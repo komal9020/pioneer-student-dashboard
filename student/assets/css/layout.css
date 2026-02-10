@@ -1,0 +1,46 @@
+.app-container {
+    display: flex;
+}
+
+.sidebar {
+    width: 240px;
+    background: #ffffff;
+    height: 100vh;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 12px;
+}
+
+.sidebar li.active {
+    background: #e0ecff;
+    border-radius: 8px;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.header {
+    background: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content {
+    padding: 25px;
+}
+
+.sticky-box {
+    width: 260px;
+    background: white;
+    padding: 15px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Profile</title>
+  <link rel="stylesheet" href="profile-view.css">
+</head>
+<body>
+
+<div class="profile-wrapper">
+
+  <!-- Header -->
+  <div class="profile-header">
+    <h3>Student Profile</h3>
+    <<span class="close-btn"
+      onclick="window.location.href='../../dashboard/dashboard.html'">×</span>
+  </div>
+
+  <!-- Tabs -->
+  <div class="profile-tabs">
+    <span class="active">Profile</span>
+    <span>Attendance</span>
+    <span>Fee Details</span>
+  </div>
+
+  <!-- Body -->
+  <form id="profileForm" class="profile-body" enctype="multipart/form-data">
+
+
+    <!-- LEFT -->
+    <div class="profile-left">
+      <div class="avatar" onclick="choosePhoto()">
+        <img id="photo">
+        <input type="file" id="photoInput" hidden>
+      </div>
+
+      <h4 id="viewName">Alex Johnson</h4>
+      <p id="viewClass">Grade 10 - Section A</p>
+      <span id="viewRoll">Roll No: STU2024001</span>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="profile-right">
+
+      <div class="info-box">
+        <h4>Personal Information</h4>
+
+        <label>Full Name</label>
+        <input id="nameInput" disabled>
+
+        <label>Email</label>
+        <input id="emailInput" disabled>
+
+        <label>Class</label>
+        <input id="classInput" disabled>
+
+        <label>Roll Number</label>
+        <input id="rollInput" disabled>
+      </div>
+
+      <div class="info-box">
+        <h4>Academic Information</h4>
+
+        <p><b>Overall Attendance</b><br>88.5%</p>
+        <p><b>Academic Year</b><br>2023–2024</p>
+        <p><b>Section</b><br>A</p>
+        <p><b>Admission Date</b><br>April 1, 2023</p>
+      </div>
+
+    </div>
+  </form>
+
+  <!-- Footer -->
+  <div class="profile-footer">
+   <button class="btn-outline"
+        onclick="window.location.href='../../dashboard/dashboard.html'">
+  Close</button>
+    <button type="button" class="btn-primary" id="editBtn" onclick="toggleEdit()">
+  Edit Profile
+</button>
+
+  </div>
+
+</div>
+
+<script src="profile-view.js"></script>
+</body>
+</html>

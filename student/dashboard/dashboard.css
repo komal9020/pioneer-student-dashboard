@@ -1,0 +1,36 @@
+.stats {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 220px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    margin-top: 10px;
+    color: #2563eb;
+}
+
+.announcements {
+    margin-top: 30px;
+}
+
+.announce {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.announce.blue {
+    background: #eff6ff;
+}
+
+.announce.green {
+    background: #ecfdf5;
+}

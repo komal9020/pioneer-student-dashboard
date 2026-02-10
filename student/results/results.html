@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results | EduClass</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="results.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <div class="main-content">
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2>Exam Results</h2>
+
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Exam</th>
+                            <th>Marks</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mathematics</td>
+                            <td>Unit Test 1</td>
+                            <td>78 / 100</td>
+                            <td class="pass">Pass</td>
+                            <td>
+                                <a href="result-details.html" class="btn-outline">View</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Physics</td>
+                            <td>Unit Test 1</td>
+                            <td>45 / 100</td>
+                            <td class="fail">Fail</td>
+                            <td>
+                                <a href="result-details.html" class="btn-outline">View</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Chemistry</td>
+                            <td>Mid Term</td>
+                            <td>82 / 100</td>
+                            <td class="pass">Pass</td>
+                            <td>
+                                <a href="result-details.html" class="btn-outline">View</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Sticky Notes -->
+    <div id="sticky-notes"></div>
+
+</div>
+
+<!-- Global JS -->
+<script src="../assets/js/common.js"></script>
+
+<!-- Page JS -->
+<script src="results.js"></script>
+
+</body>
+</html>
