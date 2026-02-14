@@ -1,48 +1,60 @@
-const API = "http://localhost:3000/api/sticky-notes";
 let selectedColor = "yellow";
 
-/* Open + Close box */
-function openNoteBox() {
-    document.getElementById("addNoteBox").style.display = "block";
+/* OPEN ADD NOTE MODAL */
+function openAddModal() {
+  document.getElementById("noteModal").classList.add("show");
 }
 
-function closeNoteBox() {
-    document.getElementById("addNoteBox").style.display = "none";
-    document.getElementById("noteMessage").value = "";
-    document.getElementById("noteSubject").value = "";
+/* CLOSE ADD NOTE MODAL */
+function closeModal() {
+  document.getElementById("noteModal").classList.remove("show");
 }
 
-/* Select color */
-function selectColor(color) {
-    selectedColor = color;
-    document.querySelectorAll(".dot").forEach(d => d.classList.remove("active"));
-    document.querySelector(".dot." + color).classList.add("active");
+/* CLOSE STICKY PANEL */
+function closePanel() {
+  document.querySelector(".sticky-panel").style.display = "none";
 }
 
-/* Save note (backend already exists) */
+/* SELECT COLOR */
+function selectColor(el) {
+  selectedColor = el.dataset.color;
+
+  // remove selection from all
+  document.querySelectorAll(".color").forEach(c =>
+    c.classList.remove("selected")
+  );
+
+  // select clicked one
+  el.classList.add("selected");
+}
+
+
+/* SAVE NOTE FROM MODAL */
 function saveNote() {
-    const message = document.getElementById("noteMessage").value;
-    const subject = document.getElementById("noteSubject").value;
+  const text = document.getElementById("noteText").value.trim();
+  const subject = document.getElementById("noteSubject").value;
 
-    if (!message || !subject) {
-        alert("Please enter message and select subject");
-        return;
-    }
+  if (!text || subject === "Select Subject") {
+    alert("Please fill all fields");
+    return;
+  }
 
-    fetch(API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            subject: subject,
-            message: message,
-            color: selectedColor,
-            posted_by: "Student"
-        })
-    })
-    .then(res => res.json())
-    .then(() => {
-        closeNoteBox();
-        // optional: reload notes list if you have it
-    })
-    .catch(err => console.error(err));
+  const note = document.createElement("div");
+  note.className = `note ${selectedColor}`;
+
+  note.innerHTML = `
+    <div class="note-top">
+      <span class="tag">${subject}</span>
+      <span class="close" onclick="this.closest('.note').remove()">×</span>
+    </div>
+    <p>${text}</p>
+    <small>Just now</small>
+  `;
+
+  document.getElementById("notesContainer").prepend(note);
+
+  // reset form
+  document.getElementById("noteText").value = "";
+  document.getElementById("noteSubject").value = "Select Subject";
+  closeModal();
 }

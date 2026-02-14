@@ -8,54 +8,63 @@
 </head>
 <body>
     
-    <aside class="sidebar">
+   <aside class="sidebar" id="sidebar">
 
-        <!-- Sidebar Logo -->
-  <div class="sidebar-logo">
-    <div class="logo-icon">E</div>
+  <!-- LOGO / TOGGLE -->
+  <div class="sidebar-logo" onclick="toggleSidebar()">
+    <img src="../assets/icons/logo web.jpeg" class="logo-icon">
     <div class="logo-text">
-      <h3>EduClass</h3>
+      <h3>PIONEER</h3>
       <span>Student</span>
     </div>
   </div>
-  
+
+  <!-- MENU -->
   <ul class="menu">
+
     <li class="menu-item active">
-      <span class="icon">📊</span>
+      <a href="../dashboard/dashboard.html">
+      <span class="icon"><img src="../assets/icons/dashboard.png" width="22"></span>
       <span class="text">Dashboard</span>
+      </a>
     </li>
 
     <li class="menu-item">
-      <span class="icon">📘</span>
+      <a href="../subjects/subject.html">
+      <span class="icon"><img src="../assets/icons/library.png" width="22"></span>
       <span class="text">Subjects</span>
+      </a>
     </li>
 
     <li class="menu-item">
-      <span class="icon">📝</span>
+      <a href="../tests/test.html">
+      <span class="icon"><img src="../assets/icons/test.png" width="22"></span>
       <span class="text">Tests</span>
+      </a>
     </li>
 
     <li class="menu-item">
-      <span class="icon">📅</span>
+      <a href="../timetable/timetable.html">
+      <span class="icon"><img src="../assets/icons/timetable.png" width="22"></span>
       <span class="text">Timetable</span>
     </li>
 
     <li class="menu-item">
-      <span class="icon">🏆</span>
+      <a href="../results/results.html">
+      <span class="icon"><img src="../assets/icons/superior.png" width="22"></span>
       <span class="text">Results</span>
     </li>
 
     <li class="menu-item">
-      <span class="icon">💬</span>
+      <a href="../chat/chat.html">
+      <span class="icon"><img src="../assets/icons/bubble-chat.png" width="22"></span>
       <span class="text">Chat</span>
+      </a>
     </li>
 
-    <li class="menu-item">
-      <span class="icon">🎓</span>
-      <span class="text">JEE / NEET</span>
-    </li>
   </ul>
 </aside>
+
 <script src="../assets/js/sidebar.js"></script>
 </body>
 </html>

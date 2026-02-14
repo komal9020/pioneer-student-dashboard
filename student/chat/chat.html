@@ -1,76 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Chat | EduClass</title>
+<meta charset="UTF-8">
+<title>Chat | EduClass</title>
 
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/layout.css">
-    <link rel="stylesheet" href="../assets/css/buttons.css">
-
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="chat.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/layout.css">
+<link rel="stylesheet" href="../assets/css/sticky-notes.css">
+<link rel="stylesheet" href="chat.css">
 </head>
+
 <body>
 
 <div class="app-container">
 
-    <!-- Sidebar -->
-    <div id="sidebar"></div>
+  <!-- Sidebar -->
+  <div id="sidebar"></div>
 
-    <div class="main-content">
+  <div class="main-content">
 
-        <!-- Header -->
-        <div id="header"></div>
+    <!-- Header -->
+    <div id="header"></div>
 
-        <!-- Content -->
-        <div class="content chat-container">
+    <!-- PAGE CONTENT -->
+    <div class="content">
 
-            <!-- Chat Users -->
-            <div class="chat-users">
-                <h3>Teachers</h3>
-                <div class="user active">Dr. Priya Sharma</div>
-                <div class="user">Prof. Rajesh Kumar</div>
-                <div class="user">Dr. Meera Patel</div>
-            </div>
+      <h2 class="page-title">Chat with Teachers</h2>
 
-            <!-- Chat Box -->
-            <div class="chat-box">
+      <div class="chat-main">
 
-                <div class="chat-header">
-                    Chat with Dr. Priya Sharma
-                </div>
+        <!-- LEFT PANEL -->
+        <div class="teachers-panel" id="teacherList"></div>
 
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message received">
-                        Hello Rahul, any doubt in today’s class?
-                    </div>
+        <!-- RIGHT PANEL -->
+        <div class="conversation-panel">
 
-                    <div class="message sent">
-                        Yes ma’am, quadratic equation formula doubt.
-                    </div>
-                </div>
+          <div class="conversation-header" id="chatHeader">
+            Select a teacher
+          </div>
 
-                <div class="chat-input">
-                    <input type="text" id="messageInput" placeholder="Type your message...">
-                    <button class="btn-primary" onclick="sendMessage()">Send</button>
-                </div>
+          <div id="messages" class="messages"></div>
 
-            </div>
+          <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">➤</button>
+          </div>
 
         </div>
+
+      </div>
+
     </div>
 
-    <!-- Sticky Notes -->
-    <div id="sticky-notes"></div>
+    <!-- Footer -->
+    <div id="footer"></div>
+
+  </div>
+
+  <!-- Sticky Notes -->
+  <div id="sticky-notes"></div>
 
 </div>
 
-<!-- Global JS -->
-<script src="../assets/js/common.js"></script>
 
-<!-- Page JS -->
+<!-- Load Components -->
+<script>
+fetch("../components/sidebar.html")
+.then(res => res.text())
+.then(html => document.getElementById("sidebar").innerHTML = html);
+
+fetch("../components/header.html")
+.then(res => res.text())
+.then(html => document.getElementById("header").innerHTML = html);
+
+fetch("../components/footer.html")
+.then(res => res.text())
+.then(html => document.getElementById("footer").innerHTML = html);
+
+fetch("../components/sticky-notes.html")
+.then(res => res.text())
+.then(html => document.getElementById("sticky-notes").innerHTML = html);
+</script>
+
 <script src="chat.js"></script>
 
 </body>

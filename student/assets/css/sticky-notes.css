@@ -1,120 +1,195 @@
-/* Sticky Header */
-.sticky-wrapper {
-    position: fixed;
-    right: 20px;
-    top: 80px;
-    z-index: 1000;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
 }
 
+body {
+  background: #f4f6f8;
+}
+
+/* Panel */
+.sticky-panel {
+  width: 300px;
+  height: 70vh;
+  background: #ffffff;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+  position: fixed;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* Header */
 .sticky-header {
-    background: #fff;
-    padding: 10px 14px;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
 }
 
-.add-btn {
-    border: none;
-    background: #facc15;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
+.actions button {
+  margin-left: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-/* Add Note Box */
-.add-note-box {
-    display: none;
-    position: fixed;
-    right: 20px;
-    top: 130px;
-    width: 320px;
-    background: #fff;
-    padding: 16px;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    z-index: 2000;
+.actions button:first-child {
+  background: #facc15;
 }
 
-/* Textarea */
-.add-note-box textarea {
-    width: 100%;
-    height: 80px;
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    padding: 10px;
-    resize: none;
-    margin-bottom: 12px;
+.actions button:last-child {
+  background: #e5e7eb;
 }
 
-/* Labels */
-.add-note-box label {
-    font-size: 13px;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 6px;
+/* Notes */
+.notes-container {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
 }
 
-/* Select */
-.add-note-box select {
-    width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-    margin-bottom: 12px;
+/* Note card */
+.note {
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
 }
 
-/* Color Dots */
-.color-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
+.note small {
+  color: #555;
+  font-size: 11px;
 }
 
-.dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid transparent;
+/* Top row */
+.note-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
-.dot.yellow { background: #fde047; }
-.dot.pink   { background: #f9a8d4; }
-.dot.blue   { background: #93c5fd; }
-.dot.green  { background: #86efac; }
-.dot.purple { background: #d8b4fe; }
-.dot.orange { background: #fdba74; }
-
-.dot.active {
-    border: 2px solid #2563eb;
+.tag {
+  background: rgba(0,0,0,0.1);
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 11px;
 }
 
-/* Buttons */
-.btn-row {
-    display: flex;
-    justify-content: space-between;
+.close {
+  cursor: pointer;
 }
 
-.btn-add {
-    background: #2563eb;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
+
+/* Info */
+.info {
+  padding: 12px;
+  font-size: 12px;
+  color: #2563eb;
+  border-top: 1px solid #e5e7eb;
 }
 
-.btn-cancel {
-    background: transparent;
-    border: 1px solid #2563eb;
-    color: #2563eb;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
+/* MODAL BACKDROP */
+.note-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+}
+
+.note-modal.show {
+  display: flex;
+}
+
+/* MODAL BOX */
+.note-box {
+  background: #fff;
+  width: 320px;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.note-box textarea {
+  width: 100%;
+  height: 90px;
+  resize: none;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 12px;
+}
+
+.note-box select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+/* COLORS */
+.color-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.color {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.color.selected {
+  border: 2px solid #2563eb;
+  transform: scale(1.1);
+}
+
+
+.yellow { background: #fff3a0; }
+.pink   { background: #ffd6ea; }
+.blue   { background: #cfe5ff; }
+.green  { background: #d1fae5; }
+.purple { background: #ede9fe; }
+.orange { background: #ffe4c7; }
+
+/* BUTTONS */
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary {
+  flex: 1;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  flex: 1;
+  background: white;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
