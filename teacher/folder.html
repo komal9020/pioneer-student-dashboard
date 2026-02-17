@@ -1,0 +1,117 @@
+pioneer/
+│
+├── server.js
+├── package.json
+├── .env
+│
+├── config/
+│   └── db.js
+│
+├── middleware/
+│   ├── authMiddleware.js
+│   ├── roleMiddleware.js
+│   ├── uploadMiddleware.js
+│   └── errorMiddleware.js
+│
+├── models/
+│   ├── teacherModel.js
+│   ├── classModel.js
+│   ├── studentModel.js
+│   ├── attendanceModel.js
+│   ├── assignmentModel.js
+│   ├── gradeModel.js
+│   ├── resourceModel.js
+│   ├── announcementModel.js
+│   └── messageModel.js
+│
+├── controllers/
+│   ├── authController.js
+│   ├── teacherController.js
+│   ├── classController.js
+│   ├── studentController.js
+│   ├── attendanceController.js
+│   ├── assignmentController.js
+│   ├── gradeController.js
+│   ├── resourceController.js
+│   ├── announcementController.js
+│   └── messageController.js
+│
+├── routes/
+│   ├── authRoutes.js
+│   ├── teacherRoutes.js
+│   ├── classRoutes.js
+│   ├── studentRoutes.js
+│   ├── attendanceRoutes.js
+│   ├── assignmentRoutes.js
+│   ├── gradeRoutes.js
+│   ├── resourceRoutes.js
+│   ├── announcementRoutes.js
+│   └── messageRoutes.js
+│
+├── uploads/                     ✅ Teacher uploads stored here
+│   ├── profiles/
+│   ├── assignments/
+│   ├── resources/
+│   ├── announcements/
+│   └── chat-files/
+│
+├── public/
+│   │
+│   ├── css/
+│   │   ├── main.css
+│   │   ├── sidebar.css
+│   │   ├── dashboard.css
+│   │   ├── classes.css
+│   │   ├── students.css
+│   │   ├── attendance.css
+│   │   ├── assignments.css
+│   │   ├── grades.css
+│   │   ├── resources.css
+│   │   ├── announcements.css
+│   │   ├── messages.css
+│   │   ├── profile.css
+│   │   └── responsive.css
+│   │
+│   ├── js/
+│   │   ├── api.js              ✅ All fetch requests
+│   │   ├── auth.js
+│   │   ├── dashboard.js
+│   │   ├── classes.js
+│   │   ├── students.js
+│   │   ├── attendance.js
+│   │   ├── assignments.js
+│   │   ├── grades.js
+│   │   ├── resources.js
+│   │   ├── announcements.js
+│   │   ├── messages.js
+│   │   ├── profile.js
+│   │   └── sidebar.js
+│   │
+│   ├── images/
+│   └── icons/
+│
+└── views/
+    └── teacher/
+        │
+        ├── login.html
+        ├── dashboard.html
+        ├── classes.html
+        ├── students.html
+        ├── attendance.html
+        ├── assignments.html
+        ├── grades.html
+        ├── schedule.html
+        ├── resources.html
+        ├── announcements.html
+        ├── messages.html
+        │
+        └── components/
+            ├── sidebar.html
+            ├── header.html
+            ├── footer.html
+            ├── modal-add-grade.html
+            ├── modal-create-assignment.html
+            ├── modal-upload-resource.html
+            ├── modal-create-announcement.html
+            ├── modal-teacher-profile.html
+            └── modal-edit-profile.html
