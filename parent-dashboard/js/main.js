@@ -19,3 +19,4 @@ fetch('http://localhost:5000/api/dashboard')
     document.getElementById('results').innerText = data[0].overall_percentage + "%";
     document.getElementById('fees').innerText = "₹" + data[0].pending_fees;
 });
+

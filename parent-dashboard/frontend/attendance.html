@@ -1,39 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Attendance</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - EduClass Parent Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #f8fafb; display: flex; flex-direction: column; height: 100vh; color: #333; }
+
+        /* Header (Same as Dashboard) */
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 30px; background: #fff; border-bottom: 1px solid #f0f0f0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-section { display: flex; align-items: center; gap: 10px; }
+        .logo-box { background: #10a37f; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 18px; }
+        .logo-text h1 { font-size: 16px; font-weight: 600; line-height: 1; }
+        .logo-text p { font-size: 10px; color: #888; }
+        
+        .header-right { display: flex; align-items: center; gap: 20px; }
+        .notif-box { position: relative; color: #666; font-size: 18px; }
+        .badge { position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; font-size: 9px; padding: 2px 5px; border-radius: 50%; }
+        .user-profile { display: flex; align-items: center; gap: 10px; padding-left: 15px; border-left: 1px solid #eee; }
+        .avatar-circle { background: #e0f2f1; color: #00796b; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; }
+        .logout-btn { border: 1.5px solid #4a90e2; color: #4a90e2; padding: 7px 16px; border-radius: 8px; background: white; font-size: 13px; font-weight: 500; cursor: pointer; }
+
+        /* Container & Sidebar */
+        .container { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 250px; background: #fff; border-right: 1px solid #f0f0f0; padding: 20px 0; }
+        .sidebar li { padding: 12px 25px; display: flex; align-items: center; gap: 12px; color: #666; cursor: pointer; font-size: 14px; transition: 0.3s; }
+        .sidebar li.active { background: #f0f7ff; color: #1a73e8; font-weight: 600; border-radius: 0 30px 30px 0; margin-right: 15px; }
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 30px 50px; overflow-y: auto; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .pill-label { background: #fff9c4; color: #856404; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 500; }
+
+        /* Subject Progress Section */
+        .subject-card {
+            background: #fff; padding: 20px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 12px; border: 1px solid #f0f0f0;
+        }
+        .subj-info b { font-size: 14px; display: block; }
+        .subj-info small { color: #888; font-size: 12px; }
+        
+        .progress-area { display: flex; align-items: center; gap: 15px; width: 350px; }
+        .track { background: #eee; height: 8px; border-radius: 10px; flex: 1; overflow: hidden; }
+        .bar { height: 100%; border-radius: 10px; }
+        .perc { font-size: 13px; font-weight: 600; min-width: 35px; text-align: right; }
+
+        /* Recent Attendance List */
+        .recent-section { margin-top: 40px; }
+        .recent-row {
+            background: #fff; border: 1px solid #f0f0f0; border-radius: 10px;
+            padding: 15px 20px; display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 10px;
+        }
+        .item-left { display: flex; align-items: center; gap: 15px; }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-present { background: #10a37f; box-shadow: 0 0 0 4px #e8f5e9; }
+        .dot-absent { background: #e53e3e; box-shadow: 0 0 0 4px #ffebee; }
+        
+        .item-text strong { display: block; font-size: 14px; }
+        .item-text span { font-size: 11px; color: #888; }
+
+        .tag { padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+        .tag-present { background: #f1fcf4; color: #10a37f; }
+        .tag-absent { background: #fff5f5; color: #e53e3e; }
+
+        .chat-btn { position: fixed; bottom: 30px; right: 30px; background: #000; color: #fff; padding: 12px 22px; border-radius: 15px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    </style>
 </head>
 <body>
 
-<div id="header"></div>
-<div id="sidebar"></div>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo-box">E</div>
+            <div class="logo-text"><h1>EduClass</h1><p>Parent Portal</p></div>
+        </div>
+        <div class="header-right">
+            <div class="notif-box"><i class="fa-regular fa-bell"></i><span class="badge">4</span></div>
+            <div class="user-profile">
+                <div class="avatar-circle">MPS</div>
+                <span style="font-size: 13px; font-weight: 500;">Mrs. Priya Sharma</span>
+            </div>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </header>
 
-<div class="main">
-    <h2>Attendance Details</h2>
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li onclick="window.location.href='index.html'"><i class="fa-solid fa-house"></i> Overview</li>
+                <li class="active" onclick="window.location.href='attendance.html'"><i class="fa-regular fa-calendar-check"></i> Attendance</li>
+                <li onclick="window.location.href='results.html'"><i class="fa-solid fa-file-lines"></i> Results</li>
+                <li onclick="window.location.href='fees.html'"><i class="fa-solid fa-wallet"></i> Fee Management</li>
+                <li onclick="window.location.href='chat.html'"><i class="fa-regular fa-comments"></i> Chat with Teachers</li>
+            </ul>
+        </aside>
 
-    <table>
-        <tr>
-            <th>Month</th>
-            <th>Percentage</th>
-        </tr>
-        <tr>
-            <td>January</td>
-            <td>95%</td>
-        </tr>
-        <tr>
-            <td>February</td>
-            <td>90%</td>
-        </tr>
-        <tr>
-            <td>March</td>
-            <td>93%</td>
-        </tr>
-    </table>
-</div>
+        <main class="main-content">
+            <div class="section-header">
+                <h3>Attendance</h3>
+                <span class="pill-label">85% Overall</span>
+            </div>
 
-<div id="footer"></div>
+            <div class="subject-card">
+                <div class="subj-info"><b>Mathematics</b><small>18/20 classes</small></div>
+                <div class="progress-area">
+                    <div class="track"><div class="bar" style="width: 90%; background: #10a37f;"></div></div>
+                    <span class="perc">90%</span>
+                </div>
+            </div>
+            <div class="subject-card">
+                <div class="subj-info"><b>Physics</b><small>16/20 classes</small></div>
+                <div class="progress-area">
+                    <div class="track"><div class="bar" style="width: 80%; background: #fbc02d;"></div></div>
+                    <span class="perc">80%</span>
+                </div>
+            </div>
+            <div class="subject-card">
+                <div class="subj-info"><b>Chemistry</b><small>17/20 classes</small></div>
+                <div class="progress-area">
+                    <div class="track"><div class="bar" style="width: 85%; background: #fbc02d;"></div></div>
+                    <span class="perc">85%</span>
+                </div>
+            </div>
+            <div class="subject-card">
+                <div class="subj-info"><b>Biology</b><small>19/20 classes</small></div>
+                <div class="progress-area">
+                    <div class="track"><div class="bar" style="width: 95%; background: #10a37f;"></div></div>
+                    <span class="perc">95%</span>
+                </div>
+            </div>
+            <div class="subject-card">
+                <div class="subj-info"><b>English</b><small>15/20 classes</small></div>
+                <div class="progress-area">
+                    <div class="track"><div class="bar" style="width: 75%; background: #fbc02d;"></div></div>
+                    <span class="perc">75%</span>
+                </div>
+            </div>
 
-<script src="../js/main.js"></script>
+            <div class="recent-section">
+                <h4 style="margin-bottom: 20px;">Recent Attendance</h4>
+                <div class="attendance-list">
+                    <div class="recent-row">
+                        <div class="item-left"><div class="status-dot dot-present"></div><div class="item-text"><strong>Mathematics</strong><span>2024-01-15</span></div></div>
+                        <span class="tag tag-present">Present</span>
+                    </div>
+                    <div class="recent-row">
+                        <div class="item-left"><div class="status-dot dot-absent"></div><div class="item-text"><strong>Physics</strong><span>2024-01-15</span></div></div>
+                        <span class="tag tag-absent">Absent</span>
+                    </div>
+                    <div class="recent-row">
+                        <div class="item-left"><div class="status-dot dot-present"></div><div class="item-text"><strong>Chemistry</strong><span>2024-01-14</span></div></div>
+                        <span class="tag tag-present">Present</span>
+                    </div>
+                    <div class="recent-row">
+                        <div class="item-left"><div class="status-dot dot-present"></div><div class="item-text"><strong>Biology</strong><span>2024-01-14</span></div></div>
+                        <span class="tag tag-present">Present</span>
+                    </div>
+                    <div class="recent-row">
+                        <div class="item-left"><div class="status-dot dot-present"></div><div class="item-text"><strong>English</strong><span>2024-01-13</span></div></div>
+                        <span class="tag tag-present">Present</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="chat-btn">
+        <i class="fa-solid fa-comment-dots"></i>
+        <span style="margin-left: 10px;">Talk with Us</span>
+    </div>
+
 </body>
 </html>
