@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Results - EduClass</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #f8fafb; color: #333; }
+        .container { display: flex; height: 100vh; }
+
+         /* --- HEADER --- */
+         .header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 30px; background: #fff; border-bottom: 1px solid #f0f0f0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo-section { display: flex; align-items: center; gap: 10px; }
+        .logo-box { background: #10a37f; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 18px; }
+        .logo-text h1 { font-size: 16px; font-weight: 600; line-height: 1; }
+        .logo-text p { font-size: 10px; color: #888; }
+        
+        .header-right { display: flex; align-items: center; gap: 20px; }
+        .notif-box { position: relative; cursor: pointer; color: #666; font-size: 18px; }
+        .badge {
+            position: absolute; top: -5px; right: -5px; background: #ff4d4d;
+            color: white; font-size: 9px; padding: 2px 5px; border-radius: 50%;
+        }
+        .user-profile { display: flex; align-items: center; gap: 10px; padding-left: 15px; border-left: 1px solid #eee; }
+        .avatar-circle { background: #e0f2f1; color: #00796b; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px; }
+        .logout-btn { border: 1.5px solid #4a90e2; color: #4a90e2; padding: 7px 16px; border-radius: 8px; background: white; font-size: 13px; font-weight: 500; cursor: pointer; }
+
+        /* Sidebar */
+        .sidebar { width: 250px; background: #fff; border-right: 1px solid #f0f0f0; padding: 20px 0; }
+        .sidebar li { padding: 12px 25px; display: flex; align-items: center; gap: 12px; color: #666; cursor: pointer; font-size: 14px; }
+        .sidebar li.active { background: #f0f7ff; color: #1a73e8; font-weight: 600; border-radius: 0 30px 30px 0; margin-right: 15px; }
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 30px 50px; overflow-y: auto; }
+        .section-title { font-size: 18px; font-weight: 600; margin-bottom: 25px; }
+
+        /* Top Summary Cards */
+        .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 35px; }
+        .summary-card { padding: 20px; border-radius: 12px; text-align: center; }
+        .summary-card h2 { font-size: 24px; margin-bottom: 4px; }
+        .summary-card p { font-size: 11px; color: #666; font-weight: 500; }
+        .blue { background: #f0f7ff; color: #1a73e8; }
+        .green { background: #f1fcf4; color: #10a37f; }
+        .purple { background: #f6f2ff; color: #7c4dff; }
+        .orange { background: #fff9f2; color: #f57c00; }
+
+        /* Performance Table */
+        .perf-box { background: #fff; border-radius: 16px; padding: 25px; border: 1px solid #f0f0f0; margin-bottom: 30px; }
+        .perf-table { width: 100%; border-collapse: collapse; }
+        .perf-table th { text-align: left; padding: 12px; color: #888; font-size: 12px; border-bottom: 1px solid #eee; }
+        .perf-table td { padding: 15px 12px; border-bottom: 1px solid #f8f9fa; font-size: 13px; }
+
+        /* Bars and Badges */
+        .bar-wrap { display: flex; align-items: center; gap: 10px; width: 180px; }
+        .bar-bg { background: #eee; height: 6px; border-radius: 10px; flex: 1; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 10px; }
+        .grade-pill { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; }
+        .aplus { background: #e8f5e9; color: #10a37f; }
+        .agrade { background: #e3f2fd; color: #1a73e8; }
+
+        /* Test Result Rows */
+        .test-row { background: #fff; border: 1px solid #f0f0f0; border-radius: 12px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .test-meta b { font-size: 14px; display: block; }
+        .test-meta span { font-size: 11px; color: #888; }
+        .score-box { text-align: right; margin-right: 15px; }
+        .score-box b { font-size: 14px; display: block; }
+        .score-box span { font-size: 11px; color: #888; }
+        .excellent { background: #f1fcf4; color: #10a37f; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+
+        /* Floating Button */
+        .talk-btn { position: fixed; bottom: 25px; right: 25px; background: #000; color: #fff; padding: 10px 20px; border-radius: 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo-box">E</div>
+            <div class="logo-text"><h1>EduClass</h1><p>Parent Portal</p></div>
+        </div>
+        <div class="header-right">
+            <div class="notif-box"><i class="fa-regular fa-bell"></i><span class="badge">4</span></div>
+            <div class="user-profile">
+                <div class="avatar-circle">MPS</div>
+                <span style="font-size: 13px; font-weight: 500;">Mrs. Priya Sharma</span>
+            </div>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </header>
+
+<div class="container">
+    <aside class="sidebar">
+        <ul>
+            <li onclick="window.location.href='parentdashboard.html'"><i class="fa-solid fa-house"></i> Overview</li>
+            <li onclick="window.location.href='attendance.html'"><i class="fa-regular fa-calendar-check"></i> Attendance</li>
+            <li class="active" onclick="window.location.href='results.html'"><i class="fa-solid fa-file-lines"></i> Results</li>
+            <li onclick="window.location.href='fees.html'"><i class="fa-solid fa-wallet"></i> Fee Management</li>
+            <li onclick="window.location.href='chat.html'"><i class="fa-regular fa-comments"></i> Chat with Teachers</li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <h3 class="section-title">Academic Results</h3>
+
+        <div class="summary-grid">
+            <div class="summary-card blue"><h2>A</h2><p>Current Grade</p></div>
+            <div class="summary-card green"><h2>87.5%</h2><p>Overall Percentage</p></div>
+            <div class="summary-card purple"><h2>#5</h2><p>Class Rank</p></div>
+            <div class="summary-card orange"><h2>45</h2><p>Total Students</p></div>
+        </div>
+
+        <div class="perf-box">
+            <h4 style="font-size: 14px; margin-bottom: 20px;">Subject-wise Performance</h4>
+            <table class="perf-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks</th>
+                        <th>Percentage</th>
+                        <th style="text-align: center;">Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Mathematics</strong></td>
+                        <td>92/100</td>
+                        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width: 92%; background: #10a37f;"></div></div><b>92%</b></div></td>
+                        <td align="center"><div class="grade-pill aplus">A+</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Physics</strong></td>
+                        <td>85/100</td>
+                        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width: 85%; background: #fbc02d;"></div></div><b>85%</b></div></td>
+                        <td align="center"><div class="grade-pill agrade">A</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chemistry</strong></td>
+                        <td>88/100</td>
+                        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width: 88%; background: #fbc02d;"></div></div><b>88%</b></div></td>
+                        <td align="center"><div class="grade-pill agrade">A</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biology</strong></td>
+                        <td>90/100</td>
+                        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width: 90%; background: #10a37f;"></div></div><b>90%</b></div></td>
+                        <td align="center"><div class="grade-pill aplus">A+</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>English</strong></td>
+                        <td>82/100</td>
+                        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width: 82%; background: #fbc02d;"></div></div><b>82%</b></div></td>
+                        <td align="center"><div class="grade-pill agrade">A</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-results">
+            <h4 style="font-size: 14px; margin-bottom: 15px;">Recent Test Results</h4>
+            
+            <div class="test-row">
+                <div class="test-meta"><b>Monthly Test - Mathematics</b><span>2024-01-10</span></div>
+                <div style="display: flex; align-items: center;">
+                    <div class="score-box"><b>45/50</b><span>90%</span></div>
+                    <span class="excellent">Excellent</span>
+                </div>
+            </div>
+
+            <div class="test-row">
+                <div class="test-meta"><b>Unit Test - Physics</b><span>2024-01-08</span></div>
+                <div style="display: flex; align-items: center;">
+                    <div class="score-box"><b>38/40</b><span>95%</span></div>
+                    <span class="excellent">Excellent</span>
+                </div>
+            </div>
+
+            <div class="test-row">
+                <div class="test-meta"><b>Weekly Test - Chemistry</b><span>2024-01-05</span></div>
+                <div style="display: flex; align-items: center;">
+                    <div class="score-box"><b>22/25</b><span>88%</span></div>
+                    <span class="excellent">Excellent</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="talk-btn">
+    <i class="fa-solid fa-headset"></i>
+    <span>Talk with Us</span>
+</div>
+
+</body>
+</html>

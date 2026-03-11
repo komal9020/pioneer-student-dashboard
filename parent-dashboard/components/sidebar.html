@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sidebar Demo</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            background: #ffffff;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .sidebar.collapsed {
+            width: 70px;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #2ecc71;
+            margin-bottom: 30px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            background: #e8f5e9;
+            color: #2ecc71;
+        }
+
+        .menu a.active {
+            background: #e8f5e9;
+            color: #2ecc71;
+            border-left: 4px solid #2ecc71;
+        }
+
+        .icon {
+            font-size: 18px;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .toggle-btn:hover {
+            background: #27ae60;
+        }
+
+        /* Content area */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .sidebar.collapsed + .content {
+            margin-left: 90px;
+        }
+        .icondash{
+            width: 24px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+    <div class="logo">EduClass</div>
+
+    <div class="menu">
+        <a href="../frontend/index.html"><span class="icon"><img src="../components/icon/statistics_8718864.png" class="icondash"></span> Dashboard</a>
+        <a href="../frontend/attendance.html"><span class="icon"><img src="../components/icon/attendance_6611895.png" class="icondash"></span> Attendance</a>
+        <a href="../frontend/results.html"><span class="icon"><img src="../components/icon/result_9913615.png" class="icondash"></span> Results</a>
+        <a href="../frontend/fees.html"><span class="icon"><img src="../components/icon/budget_7570385.png" class="icondash"></span> Fees</a>
+        <a href="../frontend/chat.html"><span class="icon"><img src="../components/icon/office_12039231.png" class="icondash"></span> Chat</a>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+</div>
+
+<div class="content">
+    <h2>Dashboard Content</h2>
+    <p>This is the main content area.</p>
+</div>
+
+<script>
+    function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("collapsed");
+    }
+
+    // hightlight page
+    const currentPage = window.location.pathname.split("/").pop();
+
+const menuLinks = document.querySelectorAll(".sidebar a");
+
+menuLinks.forEach(link => {
+    const linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+        link.classList.add("active");
+    }
+});
+</script>
+
+</body>
+</html>
